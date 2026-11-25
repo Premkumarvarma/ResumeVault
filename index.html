@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeVault | Recruiter Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">RV</span><div><strong>ResumeVault</strong><small>RECRUITER WORKSPACE</small></div></div>
+      <nav><a class="active" href="#dashboard">▦ <span>Dashboard</span></a><a href="#candidates">♙ <span>Candidates</span></a></nav>
+      <div class="side-note"><span class="dot"></span> Your workspace is private<br><small>Resumes are stored in this browser.</small></div>
+    </aside>
+
+    <main class="main" id="dashboard">
+      <header class="topbar">
+        <div><p class="eyebrow">RECRUITMENT / TALENT DATABASE</p><h1>Candidate resumes</h1><p class="subhead">Save, organize and find the right candidate in seconds.</p></div>
+        <div class="avatar">R</div>
+      </header>
+
+      <section class="stats">
+        <article class="stat-card"><span>Total candidates</span><strong id="totalCount">0</strong><small>Saved in your workspace</small></article>
+        <article class="stat-card"><span>Domains covered</span><strong id="domainCount">0</strong><small>Distinct candidate domains</small></article>
+        <article class="stat-card"><span>Recently added</span><strong id="recentCount">0</strong><small>Added in the last 7 days</small></article>
+      </section>
+
+      <section class="content-grid">
+        <section class="panel form-panel">
+          <div class="panel-heading"><div><p class="eyebrow">ADD TO DATABASE</p><h2>Save a candidate</h2></div><span class="plus">＋</span></div>
+          <form id="candidateForm">
+            <label for="personName">Person name <em>*</em></label>
+            <input id="personName" name="personName" type="text" placeholder="e.g. Priya Sharma" required maxlength="100" />
+            <label for="domain">Domain <em>*</em></label>
+            <input id="domain" name="domain" list="domainOptions" placeholder="e.g. Java Developer" required maxlength="80" />
+            <datalist id="domainOptions">
+              <option>Java Developer</option><option>Python Developer</option><option>Frontend Developer</option>
+              <option>Backend Developer</option><option>Full Stack Developer</option><option>DevOps Engineer</option>
+              <option>Data Analyst</option><option>QA / Testing</option><option>Cloud Engineer</option>
+            </datalist>
+            <label for="resumeFile">Resume file <em>*</em></label>
+            <label class="file-drop" for="resumeFile"><span class="upload-icon">↑</span><strong id="fileLabel">Choose a resume to upload</strong><small>PDF, DOC or DOCX · Max 15 MB</small><input id="resumeFile" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required /></label>
+            <button class="primary-btn" type="submit">＋ Save candidate</button>
+            <p class="form-message" id="formMessage" role="status"></p>
+          </form>
+        </section>
+
+        <section class="panel list-panel" id="candidates">
+          <div class="panel-heading list-heading"><div><p class="eyebrow">YOUR TALENT POOL</p><h2>Saved candidates</h2></div><span class="count-pill" id="resultCount">0 records</span></div>
+          <div class="search-row">
+            <div class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search by person name or domain..." /></div>
+            <select id="domainFilter" aria-label="Filter by domain"><option value="">All domains</option></select>
+          </div>
+          <div class="table-wrap">
+            <table><thead><tr><th>PERSON</th><th>DOMAIN</th><th>RESUME</th><th>ADDED</th><th>ACTIONS</th></tr></thead><tbody id="candidateRows"></tbody></table>
+            <div class="empty-state" id="emptyState"><div class="empty-icon">▤</div><strong>No candidates found</strong><p>Add a resume or change your search.</p></div>
+          </div>
+          <div class="list-footer"><span id="footerText">Showing 0 candidates</span><button class="text-btn" id="exportBtn" type="button">Export candidate list ↓</button></div>
+        </section>
+      </section>
+      <footer>ResumeVault · Keep your recruitment pipeline organized.</footer>
+    </main>
+  </div>
+
+  <div class="modal" id="previewModal" aria-hidden="true">
+    <div class="modal-card"><div class="modal-head"><div><p class="eyebrow">RESUME PREVIEW</p><h2 id="previewTitle">Candidate resume</h2></div><button class="close-btn" id="closePreview" aria-label="Close">×</button></div><div id="previewContent" class="preview-content"></div></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
